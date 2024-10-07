@@ -21,7 +21,7 @@ public class ClientHandler implements Runnable {
             try {
                 message = dis.readUTF();
                 System.out.println(username + ": " + message);
-                Server.sendMessage(username, "group1", message); // Replace with actual recipient/group
+                Server.sendMessage(username, "group1", message); 
             } catch (IOException e) {
                 e.printStackTrace();
                 break;

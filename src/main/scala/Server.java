@@ -28,13 +28,12 @@ public class Server {
         }
     }
 
-    // Method to create a new group
+
     public static void createGroup(String groupName, List<String> members) {
         groups.put(groupName, members);
         System.out.println("Group " + groupName + " created with members " + members);
     }
 
-    // Method to send a message to a specific user or group
     public static void sendMessage(String sender, String recipient, Object messageContent) {
         if (messageContent instanceof String) {
             Message message = new Message(sender, recipient, (String) messageContent);
@@ -59,8 +58,6 @@ public class Server {
         }
     }
     
-
-    // Method to get the message history
     public static List<Message> getMessageHistory() {
         return messageHistory;
     }

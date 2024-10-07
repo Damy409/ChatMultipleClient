@@ -18,13 +18,13 @@ import java.util.Scanner;
                 this.dos = new DataOutputStream(socket.getOutputStream());
                 this.scanner = new Scanner(System.in);
     
-                // Enviar nombre de usuario al servidor
+
                 dos.writeUTF(username);
     
-                // Iniciar un hilo para escuchar mensajes entrantes
+
                 new Thread(new Listener()).start();
     
-                // Menú interactivo
+
                 while (true) {
                     System.out.println("Seleccione una opción:\n1. Enviar mensaje de texto\n2. Enviar nota de voz\n3. Realizar llamada\n4. Crear grupo");
                     String option = scanner.nextLine();
@@ -34,8 +34,7 @@ import java.util.Scanner;
                 e.printStackTrace();
             }
         }
-    
-        // Manejar la entrada del usuario
+
         private void handleUserInput(String option) throws IOException {
             switch (option) {
                 case "1":
@@ -67,13 +66,15 @@ import java.util.Scanner;
             }
         }
     
-        // Enviar nota de voz
         private void sendVoiceMessage(String recipient) {
             try {
                 ClientAudioHandler audioHandler = new ClientAudioHandler(socket.getInetAddress().getHostAddress(), 1235);
-                audioHandler.start();
-                dos.writeUTF("AUDIO_MESSAGE:" + recipient);
-            } catch (IOException e) {
+                audioHandler.start(); 
+               
+                Thread.sleep(100); 
+                dos.writeUTF("AUDIO_MESSAGE:" + recipient); 
+        
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
